@@ -141,10 +141,10 @@ def generateLaunchDescriptionMara(gzclient, realSpeed, multiInstance, port, urdf
         Node(package='mara_utils_scripts', node_executable='spawn_mara.py',
              arguments=[urdf],
              output='screen'),
-        Node(package='hros_cognition_mara_components',
-             node_executable='hros_cognition_mara_components', output='screen',
-             arguments=["-motors", installDir \
-             + "/share/hros_cognition_mara_components/motors.yaml", "sim"]),
+        Node(package='hrim_cognition_mara_components',
+             node_executable='hrim_cognition_mara_components', output='screen',
+             arguments=["-mara", installDir \
+             + "/share/hrim_cognition_mara_components/mara.yaml", "sim"]),
         Node(package='mara_contact_publisher', node_executable='mara_contact_publisher',
              output='screen')
     ])
@@ -156,9 +156,9 @@ def launchReal():
     os.environ["RMW_IMPLEMENTATION"] = "rmw_opensplice_cpp"
     installDir = get_package_prefix('mara_gazebo_plugins')
     launchDesc = LaunchDescription([
-        Node(package='hros_cognition_mara_components',
-             node_executable='hros_cognition_mara_components',
-             arguments=["-motors", installDir \
-             + "/share/hros_cognition_mara_components/motors.yaml", "real"], output='screen')
+        Node(package='hrim_cognition_mara_components',
+             node_executable='hrim_cognition_mara_components',
+             arguments=["-mara", installDir \
+             + "/share/hrim_cognition_mara_components/mara.yaml", "real"], output='screen')
     ])
     return launchDesc
